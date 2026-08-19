@@ -5,194 +5,146 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>CW Masonry — Concept Redesign</title>
 <style>
-:root{--red:#c91616;--dark:#101214;--ink:#17191c;--muted:#667078;--paper:#f7f5f1;--white:#fff}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;color:var(--ink);background:var(--paper)}
-a{text-decoration:none;color:inherit}.top{background:#0d0f11;color:#fff;padding:9px 6%;display:flex;justify-content:space-between;font-size:13px;gap:20px;flex-wrap:wrap}
-nav{height:76px;background:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 6%;position:sticky;top:0;z-index:10;box-shadow:0 2px 15px #0001}
-.logo{font-weight:1000;font-size:25px;letter-spacing:-1px}.logo span{color:var(--red)}.logo small{display:block;font-size:9px;letter-spacing:2px;color:#555}
-nav .links{display:flex;gap:27px;font-size:14px;font-weight:700} .cta{background:var(--red);color:#fff;padding:13px 18px;border-radius:6px;font-weight:800}
-.hero{min-height:560px;background:linear-gradient(135deg,#0b0d0f 0%,#181b1e 58%,#2b1010 100%);display:grid;place-items:center;padding:70px 6%;overflow:hidden}
-.hero-inner{max-width:1200px;width:100%;display:grid;grid-template-columns:1.1fr .9fr;align-items:center;gap:30px}.eyebrow{display:inline-block;background:var(--red);color:#fff;padding:9px 15px;border-radius:4px;font-weight:900;letter-spacing:.8px}.hero h1{font-size:clamp(45px,6vw,82px);line-height:.92;color:#fff;margin:22px 0 14px;letter-spacing:-4px}.hero h1 span{color:#ff2a2a}.hero p{color:#e9e9e9;font-size:19px;line-height:1.6;max-width:650px}.buttons{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}.buttons .btn{min-width:190px;text-align:center}.btn{padding:16px 22px;border-radius:6px;font-weight:900;border:1px solid #ffffff66;color:#fff}.btn.red{background:var(--red);border-color:var(--red)}
-.mason{justify-self:center;position:relative;width:330px;height:390px;animation:float 4s ease-in-out infinite}.head{width:110px;height:110px;border-radius:50%;background:#d9956a;margin:45px auto 0;position:relative;z-index:2}.helmet{position:absolute;width:150px;height:48px;background:#222;border-radius:80px 80px 20px 20px;left:90px;top:30px;z-index:3;border-bottom:10px solid var(--red)}.body{width:205px;height:180px;background:#222;border-radius:70px 70px 20px 20px;margin:-2px auto 0;position:relative}.overall{position:absolute;left:58px;top:15px;width:90px;height:145px;border:18px solid #777;border-top:0;border-radius:0 0 25px 25px}.arm{position:absolute;width:48px;height:145px;background:#d9956a;border-radius:30px;top:28px}.arm.l{left:10px;transform:rotate(35deg)}.arm.r{right:10px;transform:rotate(-35deg)}.trowel{position:absolute;width:100px;height:12px;background:#bbb;right:-45px;top:135px;transform:rotate(-30deg);border-radius:8px}.brick{position:absolute;bottom:5px;left:25px;width:280px;height:105px;background:repeating-linear-gradient(0deg,#b54b32 0 22px,#633023 22px 25px),repeating-linear-gradient(90deg,transparent 0 58px,#633023 58px 61px);border:6px solid #6d3024;box-shadow:0 10px 30px #0007}
-@keyframes float{50%{transform:translateY(-10px)}}section{padding:85px 6%}.section-head{text-align:center;max-width:750px;margin:0 auto 42px}.section-head .ey{color:var(--red);font-weight:900;letter-spacing:2px}.section-head h2{font-size:42px;margin:10px 0}.section-head p{color:var(--muted);line-height:1.7}
-.services{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:1200px;margin:auto}.card{background:#fff;border:1px solid #ddd;padding:28px;border-radius:12px;transition:.3s;box-shadow:0 8px 30px #0000000a}.card:hover{transform:translateY(-8px);box-shadow:0 15px 35px #0002}.icon{font-size:38px}.card h3{margin:15px 0 8px}.card p{color:var(--muted);line-height:1.6}.card a{color:var(--red);font-weight:900}
-.work{background:#121416;color:#fff}.gallery{max-width:1200px;margin:auto;display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.shot{height:230px;border-radius:10px;overflow:hidden;position:relative;background:#333}.shot img{width:100%;height:100%;object-fit:cover;transition:.5s}.shot:hover img{transform:scale(1.08)}.shot span{position:absolute;bottom:0;left:0;right:0;padding:18px;background:linear-gradient(transparent,#000c);font-weight:900}
-.trust{background:var(--red);color:#fff;display:grid;grid-template-columns:repeat(4,1fr);text-align:center}.trust strong{font-size:30px;display:block}.trust div{padding:35px 10px;border-right:1px solid #fff4}.contact{background:#fff}.contactbox{max-width:1050px;margin:auto;background:#151719;color:#fff;border-radius:16px;padding:45px;display:grid;grid-template-columns:1fr 1fr;gap:35px}.contactbox h2{font-size:40px;margin:0 0 12px}.contactbox p{color:#cbd0d3;line-height:1.6}.form input,.form textarea{width:100%;margin:7px 0;padding:14px;border:1px solid #444;background:#222;color:#fff;border-radius:5px}.form textarea{min-height:110px}.form button{width:100%;padding:15px;background:var(--red);color:#fff;border:0;border-radius:5px;font-weight:900;font-size:16px}
-footer{background:#0b0c0d;color:#bbb;padding:25px 6%;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
-@media(max-width:850px){nav .links{display:none}.hero{min-height:auto;padding:42px 5% 48px}.hero-inner{grid-template-columns:1fr;gap:4px}.hero-scene{width:100%;height:auto;max-width:470px;margin:-5px auto -25px}.services,.gallery{grid-template-columns:1fr}.trust{grid-template-columns:1fr 1fr}.contactbox{grid-template-columns:1fr}.hero h1{font-size:clamp(40px,12vw,62px);letter-spacing:-2px}.hero p{font-size:17px}.hero-scene{margin-top:4px}.buttons{margin-top:22px}.buttons .btn{width:100%}}
+:root{--red:#d71919;--red2:#ff3131;--black:#0b0d0f;--dark:#111518;--paper:#f5f4f1;--muted:#687078;--white:#fff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Inter,Arial,system-ui,sans-serif;background:var(--paper);color:#111}
+a{text-decoration:none;color:inherit}
+.top{height:34px;background:#090b0d;color:#eee;display:flex;align-items:center;justify-content:center;gap:28px;font-size:12px;font-weight:700;letter-spacing:.2px}
+.top span{padding:0 18px;border-right:1px solid #555}.top span:last-child{border:0}
+nav{height:76px;background:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 5%;position:sticky;top:0;z-index:50;box-shadow:0 3px 16px #0002}
+.logo{font-size:27px;font-weight:1000;letter-spacing:-1.5px}.logo b{color:var(--red)}.logo small{display:block;font-size:8px;letter-spacing:2.1px;color:#555;margin-top:-2px}
+.links{display:flex;gap:32px;font-weight:800;font-size:14px}.links a:hover{color:var(--red)}
+.cta{background:var(--red);color:white;padding:14px 23px;border-radius:8px;font-weight:1000;box-shadow:0 8px 20px #d7191933}
 
-.float-badge{position:absolute;right:8px;top:85px;background:#fff;color:#111;padding:8px 11px;border-radius:20px;font-size:11px;font-weight:900;box-shadow:0 8px 20px #0005;animation:pulse 1.8s ease-in-out infinite}
-@keyframes pulse{50%{transform:translateY(-5px) rotate(2deg);box-shadow:0 12px 28px #0007}}
+.hero{min-height:545px;position:relative;overflow:hidden;background:linear-gradient(100deg,#071016 0%,#10212b 48%,#1c343d 100%);color:#fff}
+.hero:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 70% 30%,#ffffff12,transparent 30%),linear-gradient(90deg,#071016 0%,transparent 68%)}
+.hero-inner{max-width:1250px;margin:auto;min-height:545px;padding:60px 5%;display:grid;grid-template-columns:1fr 1.05fr;align-items:center;position:relative;z-index:2}
+.hero-copy{padding-bottom:70px}.tag{display:inline-block;background:var(--red);padding:10px 18px;font-size:16px;font-weight:1000;transform:skew(-8deg);box-shadow:8px 8px 0 #8d1111}.tag span{display:block;transform:skew(8deg)}
+.hero h1{font-size:clamp(48px,6vw,78px);line-height:.9;letter-spacing:-4px;margin:28px 0 18px;text-transform:uppercase;text-shadow:4px 5px 0 #0008}
+.hero h1 span{color:#ff2929;font-style:italic}
+.hero .sub{max-width:620px;font-size:17px;line-height:1.55;color:#e6ecee}.chips{display:flex;gap:12px;flex-wrap:wrap;margin:18px 0;font-size:12px;font-weight:1000;letter-spacing:1px}.chips i{font-style:normal}.chips i:not(:last-child):after{content:"•";color:var(--red2);margin-left:12px}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}.btn{padding:15px 23px;border-radius:7px;font-weight:1000;border:1px solid #fff8}.btn.red{background:var(--red);border-color:var(--red)}.btn.dark{background:#111c;color:#fff}
 
-.brick-float{position:absolute;width:34px;height:16px;background:#b94a32;border:2px solid #6d3024;border-radius:2px;right:18px;top:150px;animation:brickFloat 3.2s ease-in-out infinite}
-.brick-float.b2{right:70px;top:205px;animation-delay:.7s}.brick-float.b3{right:30px;top:255px;animation-delay:1.3s}
-.spark{position:absolute;width:6px;height:6px;border-radius:50%;background:#ff3434;box-shadow:0 0 16px #ff3434;animation:spark 1.7s ease-in-out infinite}
-.spark.s1{right:8%;top:24%}.spark.s2{right:16%;top:48%;animation-delay:.5s}.spark.s3{left:45%;top:20%;animation-delay:1s}
-@keyframes brickFloat{50%{transform:translateY(-14px) rotate(4deg);opacity:.7}}
-@keyframes spark{50%{transform:scale(1.8);opacity:.25}}
+.hero-art{height:500px;position:relative;align-self:end}
+.art-bg{position:absolute;inset:30px 0 0;background:linear-gradient(160deg,#3e6d7f,#9fc8d5 62%,#dce4df);clip-path:polygon(18% 0,100% 0,100% 100%,0 100%,0 30%);opacity:.95}
+.house{position:absolute;right:4%;bottom:35px;width:48%;height:285px}
+.house .wall{position:absolute;right:0;bottom:0;width:68%;height:205px;background:linear-gradient(90deg,#d7c7ac,#eee3ce);border:5px solid #b4a58e}
+.house .roof{position:absolute;right:-5%;top:15px;width:78%;height:130px;background:#303b43;clip-path:polygon(8% 100%,50% 0,100% 100%);border-bottom:10px solid #1d252a}
+.house .chimney{position:absolute;right:25%;top:-15px;width:62px;height:115px;background:repeating-linear-gradient(0deg,#a54b38 0 20px,#6f3028 20px 23px);border:4px solid #5a2923}
+.house .door{position:absolute;right:20%;bottom:0;width:62px;height:105px;background:#5a3d2e;border:5px solid #3b2a22}
+.house .window{position:absolute;left:18%;top:60px;width:80px;height:65px;background:#8cc3d8;border:6px solid #fff}
+.house .window:after{content:"";position:absolute;left:50%;top:0;height:100%;border-left:4px solid #fff}.house .window:before{content:"";position:absolute;left:0;top:50%;width:100%;border-top:4px solid #fff}
+.worker{position:absolute;left:5%;bottom:15px;width:66%;height:410px;z-index:4}
+.worker .leg{position:absolute;bottom:0;width:75px;height:150px;background:#252b30;border-radius:35px 35px 10px 10px}.worker .leg.l{left:44%}.worker .leg.r{left:60%;transform:rotate(-8deg)}
+.boot{position:absolute;bottom:0;width:95px;height:35px;background:#111;border-radius:25px}.boot.l{left:39%}.boot.r{left:61%}
+.torso{position:absolute;left:36%;bottom:125px;width:210px;height:190px;background:linear-gradient(135deg,#222a2f,#111519);border-radius:80px 80px 30px 30px;box-shadow:15px 15px 0 #0003}
+.straps{position:absolute;left:28px;right:28px;top:5px;height:115px;border-left:18px solid #4e5558;border-right:18px solid #4e5558}
+.head{position:absolute;left:44%;bottom:290px;width:110px;height:115px;border-radius:50%;background:#d9956b;z-index:3}
+.beard{position:absolute;left:44%;bottom:280px;width:110px;height:95px;border-radius:30px 30px 55px 55px;background:#282321;z-index:4;clip-path:polygon(0 30%,100% 30%,80% 100%,20% 100%)}
+.eye{position:absolute;bottom:345px;width:8px;height:8px;border-radius:50%;background:#111;z-index:6}.eye.e1{left:47%}.eye.e2{left:53%}
+.helmet{position:absolute;left:41%;bottom:370px;width:155px;height:58px;background:#15191c;border-radius:90px 90px 20px 20px;z-index:7;border-bottom:13px solid var(--red)}
+.helmet:after{content:"CW";position:absolute;left:0;right:0;top:12px;text-align:center;color:#fff;font-weight:1000;font-size:22px}
+.arm{position:absolute;bottom:190px;width:60px;height:180px;background:#d9956b;border-radius:40px;z-index:5;transform-origin:top center}.arm.l{left:30%;transform:rotate(38deg)}.arm.r{left:69%;transform:rotate(-40deg)}
+.glove{position:absolute;bottom:150px;width:52px;height:55px;border-radius:40%;background:#d71919;z-index:8}.glove.l{left:23%}.glove.r{left:78%}
+.trowel{position:absolute;right:5%;bottom:155px;width:130px;height:16px;background:#bfc6ca;border-radius:10px;transform:rotate(-28deg);z-index:8;animation:lay .8s ease-in-out infinite alternate}.trowel:after{content:"";position:absolute;right:-35px;top:-7px;border-left:40px solid #e6ebed;border-top:15px solid transparent;border-bottom:15px solid transparent}
+.mortar-tray{position:absolute;left:17%;bottom:88px;width:170px;height:35px;background:#8c969b;border-radius:4px;z-index:5}.mortar-tray:after{content:"";position:absolute;left:15px;right:15px;top:7px;height:12px;background:#d7d1c7;border-radius:50%}
+.wallbuild{position:absolute;left:10%;bottom:30px;width:430px;height:95px;background:repeating-linear-gradient(0deg,#9e432f 0 25px,#68271f 25px 29px),repeating-linear-gradient(90deg,transparent 0 80px,#68271f 80px 84px);border:6px solid #5f261e;z-index:6}
+@keyframes lay{to{transform:rotate(-15deg) translate(-9px,6px)}}@keyframes bob{50%{transform:translateY(-7px)}}.worker{animation:bob 4s ease-in-out infinite}
 
-.illustration{height:230px;border-radius:10px;overflow:hidden;background:#202326;position:relative}
-.illustration svg{width:100%;height:100%;display:block}
-.illustration .tool{transform-origin:0 0;animation:toolMove 1.5s ease-in-out infinite alternate}
-.illustration svg circle{animation:softFloat 2.8s ease-in-out infinite}
-@keyframes toolMove{to{transform:rotate(8deg) translateY(-3px)}}
-@keyframes softFloat{50%{transform:translateY(-4px)}}
+.service-strip{position:relative;z-index:10;margin:-42px auto 0;max-width:1200px;padding:12px;background:#fff;border-radius:18px;box-shadow:0 12px 35px #0003;display:grid;grid-template-columns:repeat(6,1fr);gap:10px}
+.service{padding:14px 8px;text-align:center;border-radius:12px;transition:.25s}.service:hover{transform:translateY(-6px);box-shadow:0 8px 20px #0001}.service .ico{height:80px;font-size:48px;display:grid;place-items:center}.service b{display:block;font-size:16px}.service small{display:block;margin-top:8px;color:var(--red);font-weight:900}
 
-.hero-scene{justify-self:center;position:relative;width:min(520px,100%);height:470px;animation:sceneFloat 5s ease-in-out infinite;filter:drop-shadow(0 20px 30px #0008)}
-.worker-svg{width:100%;height:100%;display:block}
-.scene-glow{position:absolute;inset:20% 12% 5%;background:radial-gradient(circle,#c9161633,transparent 65%);pointer-events:none}
-.scene-label{position:absolute;top:38px;right:38px;background:#fff;color:#111;padding:9px 14px;border-radius:999px;font-size:11px;font-weight:1000;letter-spacing:1.5px;box-shadow:0 8px 25px #0005}
-.scene-caption{position:absolute;left:42px;bottom:30px;background:#111d;color:#fff;padding:11px 16px;border-left:4px solid #c91616;border-radius:6px;display:flex;gap:8px;flex-direction:column}
-.scene-caption b{font-size:13px}.scene-caption span{font-size:11px;color:#c9c9c9}
-.moving-trowel{transform-origin:414px 323px;animation:trowelWork .9s ease-in-out infinite alternate}
-.work-arm{transform-origin:382px 252px;animation:armWork .9s ease-in-out infinite alternate}
-.mortar{stroke-dasharray:18 10;animation:mortarMove 1.4s linear infinite}
-.wall{animation:wallSet 2.8s ease-in-out infinite}
-.dust circle{fill:#eee;animation:dustRise 2s ease-in-out infinite}.dust circle:nth-child(2){animation-delay:.5s}.dust circle:nth-child(3){animation-delay:1s}.dust circle:nth-child(4){animation-delay:1.4s}
-@keyframes sceneFloat{50%{transform:translateY(-8px)}}
-@keyframes trowelWork{to{transform:rotate(-15deg) translate(-10px,8px)}}
-@keyframes armWork{to{transform:rotate(-6deg) translate(-5px,6px)}}
-@keyframes mortarMove{to{stroke-dashoffset:-28}}
-@keyframes wallSet{0%,100%{transform:translateY(0)}50%{transform:translateY(-2px)}}
-@keyframes dustRise{0%,100%{opacity:.15;transform:translateY(0)}50%{opacity:.9;transform:translateY(-22px)}}
+.work{background:#111417;color:#fff;padding:70px 5% 80px;margin-top:0}.work-grid{max-width:1200px;margin:auto;display:grid;grid-template-columns:250px 1fr;gap:35px;align-items:center}.work-copy .ey{color:#ff2b2b;font-weight:1000;letter-spacing:2px}.work-copy h2{font-size:45px;line-height:.95;margin:10px 0;text-transform:uppercase}.work-copy h2 span{color:#ff2b2b;font-style:italic}.work-copy p{color:#bbc2c5;line-height:1.6}.gallery{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}.shot{height:205px;background:#222;border-radius:9px;overflow:hidden;position:relative;border:1px solid #555}.shot svg{width:100%;height:100%;display:block}.shot label{position:absolute;left:0;right:0;bottom:0;background:#000b;padding:12px;font-weight:900;font-size:13px}
+
+.stats{background:linear-gradient(90deg,#d81717,#f11d1d);color:#fff;display:grid;grid-template-columns:repeat(4,1fr);text-align:center}.stats div{padding:30px 10px;border-right:1px solid #fff4}.stats strong{display:block;font-size:30px}.stats span{font-size:12px;font-weight:800}
+
+.contact{padding:75px 5%;background:#f6f5f2}.contactbox{max-width:1100px;margin:auto;background:#17191b;color:#fff;border-radius:18px;padding:45px;display:grid;grid-template-columns:1fr 1fr;gap:35px}.contactbox h2{font-size:44px;margin:10px 0}.contactbox p{color:#c9ced0;line-height:1.6}.form input,.form textarea{width:100%;padding:14px;margin:6px 0;border:1px solid #444;background:#222;color:#fff;border-radius:6px}.form textarea{min-height:110px}.form button{width:100%;padding:15px;border:0;background:var(--red);color:#fff;font-weight:1000;border-radius:6px}
+footer{background:#090b0d;color:#aaa;padding:25px 5%;display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap;font-size:13px}
+
+@media(max-width:900px){
+ .top{height:auto;padding:8px 12px;gap:5px;justify-content:space-around}.top span{padding:0 8px;font-size:10px}
+ nav{height:70px;padding:0 5%}.links{display:none}.logo{font-size:23px}.cta{padding:12px 14px;font-size:12px}
+ .hero-inner{grid-template-columns:1fr;padding:42px 5% 0;min-height:auto}.hero-copy{padding-bottom:0}.hero h1{font-size:clamp(44px,12vw,66px);letter-spacing:-2px}.hero-art{height:410px;margin-top:0;transform:scale(.92);transform-origin:center bottom}
+ .service-strip{margin:-20px 12px 0;grid-template-columns:repeat(2,1fr);border-radius:14px}.service .ico{height:60px;font-size:36px}
+ .work{padding:55px 5%}.work-grid{grid-template-columns:1fr}.work-copy{text-align:center}.work-copy h2{font-size:38px}.gallery{grid-template-columns:repeat(2,1fr)}.shot{height:180px}
+ .stats{grid-template-columns:repeat(2,1fr)}.stats div{border-bottom:1px solid #fff4}
+ .contactbox{grid-template-columns:1fr;padding:30px 22px}.contactbox h2{font-size:36px}
+}
+@media(max-width:520px){
+ .top span:nth-child(2){display:none}.hero{min-height:680px}.hero-art{height:390px;transform:scale(.78);margin-left:-10%;margin-right:-10%;margin-bottom:-45px}
+ .service-strip{grid-template-columns:repeat(2,1fr)}.gallery{grid-template-columns:1fr 1fr}.shot{height:155px}
+ .hero .sub{font-size:15px}.actions .btn{width:100%;text-align:center}
+}
 </style>
 </head>
 <body>
-<div class="top"><span>📞 (603) 674-0492</span><span>📍 Manchester, NH & surrounding areas</span><span>Fully Insured • Free Estimates</span></div>
-<nav><a class="logo" href="#">CW <span>MASONRY</span><small>MASONRY & ROOFING PROFESSIONALS</small></a><div class="links"><a href="#services">Services</a><a href="#work">Our Work</a><a href="#about">About</a><a href="#contact">Contact</a></div><a class="cta" href="#contact">FREE ESTIMATE</a></nav>
-<header class="hero"><div class="hero-inner"><div><span class="eyebrow">24+ YEARS IN BUSINESS</span><h1>BUILT ON <span>QUALITY.</span><br>BACKED BY EXPERIENCE.</h1><p>Professional masonry, roofing, chimney repair and stonework for homes and businesses in Manchester, NH and surrounding communities.</p><div class="buttons"><a class="btn red" href="tel:+16036740492">📞 CALL NOW</a><a class="btn" href="#contact">GET A FREE ESTIMATE →</a></div></div><div class="hero-scene" aria-label="Animated cartoon mason laying bricks">
-  <div class="scene-glow"></div>
-  <div class="scene-label">ON THE JOB</div>
-  <svg class="worker-svg" viewBox="0 0 520 470" role="img">
-    <defs>
-      <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0" stop-color="#26343d"/>
-        <stop offset="1" stop-color="#111518"/>
-      </linearGradient>
-      <linearGradient id="shirt" x1="0" y1="0" x2="1" y2="1">
-        <stop offset="0" stop-color="#3d444a"/>
-        <stop offset="1" stop-color="#171a1d"/>
-      </linearGradient>
-      <linearGradient id="skin" x1="0" y1="0" x2="1" y2="1">
-        <stop offset="0" stop-color="#f0b080"/>
-        <stop offset="1" stop-color="#b96845"/>
-      </linearGradient>
-      <filter id="shadow"><feDropShadow dx="0" dy="10" stdDeviation="8" flood-opacity=".45"/></filter>
-    </defs>
 
-    <!-- jobsite -->
-    <rect x="25" y="25" width="470" height="420" rx="28" fill="url(#sky)" stroke="#343b40" stroke-width="4"/>
-    <path d="M55 270L250 115l210 155" fill="#2b3135" opacity=".7"/>
-    <path d="M62 274L250 128l202 146" fill="none" stroke="#777" stroke-width="5" opacity=".45"/>
-    <path d="M120 255l70-55M185 255l70-55M250 255l70-55M315 255l70-55" stroke="#a9b0b4" stroke-width="4" opacity=".45"/>
+<div class="top">
+ <span>☎ (603) 674-0492</span><span>📍 Manchester, NH & Surrounding Areas</span><span>🛡 Fully Insured</span><span>★ Free Estimates</span>
+</div>
 
-    <!-- scaffold -->
-    <g stroke="#c68a42" stroke-width="7" fill="none" opacity=".75">
-      <path d="M62 95v210M112 95v210M62 105h50M62 180h50M62 255h50"/>
-    </g>
+<nav>
+ <a class="logo" href="#">CW <b>MASONRY</b><small>MASONRY & ROOFING PROFESSIONALS</small></a>
+ <div class="links"><a href="#home">Home</a><a href="#services">Services</a><a href="#work">Our Work</a><a href="#about">About</a><a href="#contact">Contact</a></div>
+ <a class="cta" href="#contact">☎ FREE ESTIMATE</a>
+</nav>
 
-    <!-- floating dust -->
-    <g class="dust">
-      <circle cx="390" cy="165" r="4"/><circle cx="420" cy="195" r="3"/>
-      <circle cx="355" cy="135" r="3"/><circle cx="440" cy="150" r="5"/>
-    </g>
+<header class="hero" id="home">
+ <div class="hero-inner">
+  <div class="hero-copy">
+   <div class="tag"><span>24+ YEARS IN BUSINESS</span></div>
+   <h1>BUILT WITH <span>CARE.</span></h1>
+   <div class="chips"><i>MASONRY</i><i>ROOFING</i><i>CHIMNEY</i><i>STONEWORK</i></div>
+   <p class="sub">Professional masonry, roofing, chimney repair and stonework for homes and businesses in Manchester, NH and surrounding communities.</p>
+   <div class="actions"><a class="btn red" href="tel:+16036740492">☎ CALL NOW<br>(603) 674-0492</a><a class="btn dark" href="#contact">✉ GET A FREE ESTIMATE →</a></div>
+  </div>
 
-    <!-- worker shadow -->
-    <ellipse cx="325" cy="416" rx="105" ry="20" fill="#000" opacity=".45"/>
+  <div class="hero-art">
+   <div class="art-bg"></div>
+   <div class="house"><div class="roof"></div><div class="wall"></div><div class="chimney"></div><div class="window"></div><div class="door"></div></div>
+   <div class="worker">
+    <div class="leg l"></div><div class="leg r"></div><div class="boot l"></div><div class="boot r"></div>
+    <div class="torso"><div class="straps"></div></div>
+    <div class="head"></div><div class="beard"></div><div class="eye e1"></div><div class="eye e2"></div><div class="helmet"></div>
+    <div class="arm l"></div><div class="arm r"></div><div class="glove l"></div><div class="glove r"></div>
+    <div class="mortar-tray"></div><div class="trowel"></div><div class="wallbuild"></div>
+   </div>
+  </div>
+ </div>
+</header>
 
-    <!-- legs -->
-    <path d="M270 345l-18 66q-3 16 12 20l20 2q12 0 14-14l10-67z" fill="#30363b"/>
-    <path d="M335 347l17 66q4 14 18 12l18-5q11-4 6-18l-22-61z" fill="#30363b"/>
-    <path d="M250 421q-6 15 10 20h45q9-7 0-18l-25-8z" fill="#141719"/>
-    <path d="M350 417q0 15 14 22h45q6-9-4-18l-25-10z" fill="#141719"/>
+<section class="service-strip" id="services">
+ <a class="service" href="#contact"><div class="ico">🧱</div><b>Masonry</b><small>Learn More →</small></a>
+ <a class="service" href="#contact"><div class="ico">🏠</div><b>Roofing</b><small>Learn More →</small></a>
+ <a class="service" href="#contact"><div class="ico">🔥</div><b>Chimney Repair</b><small>Learn More →</small></a>
+ <a class="service" href="#contact"><div class="ico">🪨</div><b>Stone Work</b><small>Learn More →</small></a>
+ <a class="service" href="#contact"><div class="ico">🌿</div><b>Patios & Walkways</b><small>Learn More →</small></a>
+ <a class="service" href="#contact"><div class="ico">🛠</div><b>Restoration</b><small>Learn More →</small></a>
+</section>
 
-    <!-- torso -->
-    <path d="M245 220q78-45 148 5l35 132q-83 42-177 0z" fill="url(#shirt)" filter="url(#shadow)"/>
-    <path d="M280 230v118M335 225v124" stroke="#646b70" stroke-width="8" opacity=".7"/>
-    <path d="M276 255h76" stroke="#c91616" stroke-width="8"/>
+<section class="work" id="work">
+ <div class="work-grid">
+  <div class="work-copy"><div class="ey">OUR WORK</div><h2>QUALITY YOU <span>CAN SEE.</span></h2><p>Showcase the craftsmanship behind every project with a clean, visual portfolio.</p><a class="btn red" href="#contact">VIEW MORE WORK →</a></div>
+  <div class="gallery">
+   <div class="shot"><svg viewBox="0 0 300 220"><rect width="300" height="220" fill="#c9dce3"/><path d="M35 170h230v50H35z" fill="#9d8c7c"/><path d="M55 170l95-80 95 80" fill="#b7a694"/><path d="M75 165h150" stroke="#6d6259" stroke-width="8"/><path d="M90 160l25-45 25 45M145 160l25-45 25 45" stroke="#e6ddd2" stroke-width="8"/></svg><label>Brick Steps</label></div>
+   <div class="shot"><svg viewBox="0 0 300 220"><rect width="300" height="220" fill="#a9d1df"/><path d="M45 200V105l105-60 105 60v95z" fill="#ddd2c0"/><path d="M35 105l115-72 115 72" fill="#333b42"/><path d="M195 95V15h35v80" fill="#a84937"/><path d="M195 35h35M195 55h35M195 75h35" stroke="#682d26" stroke-width="4"/></svg><label>Chimney Repair</label></div>
+   <div class="shot"><svg viewBox="0 0 300 220"><rect width="300" height="220" fill="#b9d6df"/><rect y="150" width="300" height="70" fill="#769062"/><path d="M35 185l45-75 80 35 65-65 45 105z" fill="#aaa39a" stroke="#615d58" stroke-width="7"/><path d="M65 160h170M90 135h120" stroke="#77716a" stroke-width="6"/></svg><label>Stone Wall</label></div>
+   <div class="shot"><svg viewBox="0 0 300 220"><rect width="300" height="220" fill="#a7c9d5"/><rect y="165" width="300" height="55" fill="#718b62"/><circle cx="150" cy="155" r="55" fill="#9e8770" stroke="#5b5149" stroke-width="8"/><circle cx="150" cy="155" r="35" fill="#24282a"/><path d="M65 175h170" stroke="#ddd2c1" stroke-width="10"/></svg><label>Patio</label></div>
+   <div class="shot"><svg viewBox="0 0 300 220"><rect width="300" height="220" fill="#bdd7e2"/><path d="M20 205L150 55l130 150z" fill="#30383e"/><path d="M50 190l100-105 100 105" fill="none" stroke="#59636a" stroke-width="10"/><path d="M100 135h100" stroke="#79848a" stroke-width="6"/></svg><label>Roofing</label></div>
+  </div>
+ </div>
+</section>
 
-    <!-- head -->
-    <ellipse cx="318" cy="173" rx="55" ry="62" fill="url(#skin)"/>
-    <!-- beard -->
-    <path d="M270 178q48 80 96 0l-9 45q-39 37-79 0z" fill="#2a2422"/>
-    <circle cx="298" cy="171" r="5" fill="#17191c"/><circle cx="338" cy="171" r="5" fill="#17191c"/>
-    <path d="M306 193q13 9 25 0" fill="none" stroke="#7b3e30" stroke-width="4" stroke-linecap="round"/>
+<section class="stats" id="about">
+ <div><strong>24+</strong><span>YEARS EXPERIENCE</span></div><div><strong>FREE</strong><span>ESTIMATES</span></div><div><strong>100%</strong><span>PROFESSIONAL</span></div><div><strong>INSURED</strong><span>FOR YOUR PROTECTION</span></div>
+</section>
 
-    <!-- helmet -->
-    <path d="M257 145q6-62 62-62t63 62z" fill="#15181b"/>
-    <path d="M255 145h137q-3 15-18 16H274q-16-1-19-16z" fill="#c91616"/>
-    <path d="M291 105h56v25h-56z" fill="#22272b"/>
-    <text x="319" y="123" text-anchor="middle" font-size="17" font-weight="900" fill="#fff">CW</text>
+<section class="contact" id="contact">
+ <div class="contactbox">
+  <div><div style="color:#ff3434;font-weight:1000;letter-spacing:2px">START YOUR PROJECT</div><h2>LET'S BUILD IT RIGHT.</h2><p>Call or send an estimate request. Final content, photos and business details can be customized after client approval.</p><p>☎ <b>(603) 674-0492</b><br>📍 Manchester, NH</p><a class="btn red" href="tel:+16036740492">CALL CW MASONRY</a></div>
+  <form class="form" onsubmit="event.preventDefault();alert('Demo form — connect this to the client email/CRM before launch.')"><input placeholder="Your Name" required><input type="tel" placeholder="Phone Number" required><input placeholder="Project Type"><textarea placeholder="Tell us about your project"></textarea><button>SEND ESTIMATE REQUEST</button></form>
+ </div>
+</section>
 
-    <!-- left arm holding mortar -->
-    <path d="M253 250q-31 25-52 71l31 18q39-38 58-65z" fill="url(#skin)"/>
-    <circle cx="218" cy="330" r="17" fill="#c91616"/>
-    <path d="M206 325l30 12" stroke="#ff5959" stroke-width="5"/>
-
-    <!-- right arm with trowel -->
-    <path class="work-arm" d="M382 252q34 24 52 62l-28 20q-38-30-59-58z" fill="url(#skin)"/>
-    <g class="moving-trowel">
-      <path d="M414 323l67-34" stroke="#8e969b" stroke-width="10" stroke-linecap="round"/>
-      <path d="M478 288l23 13-30 20-12-18z" fill="#d9dee0"/>
-    </g>
-
-    <!-- tool belt -->
-    <path d="M253 318q70 23 133 0" fill="none" stroke="#1b1e20" stroke-width="18"/>
-    <rect x="300" y="316" width="32" height="36" rx="5" fill="#a66a2b"/>
-    <path d="M309 324v21M320 324v21" stroke="#d8a35a" stroke-width="4"/>
-
-    <!-- brick wall being built -->
-    <g class="wall">
-      <rect x="170" y="370" width="270" height="50" rx="3" fill="#9b402c" stroke="#60261e" stroke-width="5"/>
-      <path d="M170 395h270" stroke="#61251e" stroke-width="5"/>
-      <path d="M220 370v25M310 370v25M400 370v25M195 395v25M285 395v25M375 395v25" stroke="#61251e" stroke-width="5"/>
-      <rect x="230" y="345" width="74" height="22" rx="2" fill="#b84d34" stroke="#69271f" stroke-width="4"/>
-      <rect x="310" y="345" width="74" height="22" rx="2" fill="#a9432e" stroke="#69271f" stroke-width="4"/>
-    </g>
-
-    <!-- mortar swipe -->
-    <path class="mortar" d="M205 370h205" stroke="#d8d0c6" stroke-width="7" stroke-linecap="round"/>
-  </svg>
-  <div class="scene-caption"><b>QUALITY WORK</b><span>Built by skilled hands.</span></div>
-</div></div></header>
-<section id="services"><div class="section-head"><div class="ey">WHAT WE DO</div><h2>MADE TO LAST.</h2><p>Showcase the services customers are actually searching for, with clear calls to action instead of a generic directory page.</p></div><div class="services"><article class="card"><div class="icon">🧱</div><h3>Masonry</h3><p>Brick, block and natural stone work built with precision and care.</p><a href="#contact">GET A QUOTE →</a></article><article class="card"><div class="icon">🏠</div><h3>Roofing</h3><p>Roofing installation and repairs designed for dependable protection.</p><a href="#contact">GET A QUOTE →</a></article><article class="card"><div class="icon">🔥</div><h3>Chimney Repair</h3><p>Repairs, rebuilding and restoration to keep your chimney safe.</p><a href="#contact">GET A QUOTE →</a></article><article class="card"><div class="icon">🪨</div><h3>Stone Work</h3><p>Walls, steps, veneer and custom stone projects with a premium finish.</p><a href="#contact">GET A QUOTE →</a></article><article class="card"><div class="icon">🌿</div><h3>Patios & Walkways</h3><p>Durable outdoor spaces designed around your home and lifestyle.</p><a href="#contact">GET A QUOTE →</a></article><article class="card"><div class="icon">🛠️</div><h3>Restoration</h3><p>Restore damaged masonry and protect your property from future problems.</p><a href="#contact">GET A QUOTE →</a></article></div></section>
-<section class="work" id="work"><div class="section-head"><div class="ey">OUR WORK</div><h2>QUALITY YOU CAN SEE.</h2><p>Animated hover gallery concept. Original demo layout — replace these placeholder visuals with client-approved project photos before launch.</p></div><div class="gallery"><div class="illustration scene1"><svg viewBox="0 0 500 300" aria-label="Cartoon brick wall project">
-<rect width="500" height="300" fill="#202326"/><rect y="205" width="500" height="95" fill="#8d3a2a"/>
-<g stroke="#5e251d" stroke-width="5"><path d="M0 240h500M0 275h500M85 205v35M250 205v35M410 205v35M165 240v35M330 240v35M65 275v25M250 275v25M440 275v25"/></g>
-<circle cx="105" cy="115" r="40" fill="#d7956b"/><path d="M65 108q40-65 80 0" fill="#25282b"/><path d="M80 105h50" stroke="#c91616" stroke-width="10"/>
-<path d="M80 155q25-25 50 0v55H80z" fill="#34383c"/><path d="M82 170l-42 35" stroke="#d7956b" stroke-width="18" stroke-linecap="round"/>
-<path d="M128 170l60 30" stroke="#d7956b" stroke-width="18" stroke-linecap="round"/>
-<path d="M175 193l45-22" stroke="#ddd" stroke-width="10" stroke-linecap="round" class="tool"/>
-<g fill="#f3b51b"><circle cx="195" cy="135" r="4"/><circle cx="215" cy="115" r="3"/><circle cx="230" cy="145" r="4"/></g></svg></div><div class="illustration scene2"><svg viewBox="0 0 500 300" aria-label="Cartoon chimney repair">
-<rect width="500" height="300" fill="#dbe7ef"/><path d="M0 190L180 85 500 170v130H0z" fill="#3c4146"/><path d="M250 90v-65h75v80" fill="#a84b35" stroke="#632a22" stroke-width="8"/>
-<path d="M250 60h75" stroke="#632a22" stroke-width="7"/><g stroke="#632a22" stroke-width="5"><path d="M250 90h75M250 120h75M250 150h75M268 60v30M305 90v30M268 120v30"/></g>
-<circle cx="150" cy="150" r="34" fill="#d7956b"/><path d="M117 142q34-60 68 0" fill="#222"/><path d="M122 143h60" stroke="#c91616" stroke-width="9"/>
-<path d="M125 180q35-25 70 0v65h-70z" fill="#35393d"/><path d="M132 185l-35 35M178 185l55-25" stroke="#d7956b" stroke-width="16" stroke-linecap="round"/>
-<path d="M225 160l35-15" stroke="#ddd" stroke-width="9" stroke-linecap="round" class="tool"/>
-<g fill="#fff" opacity=".8"><circle cx="285" cy="35" r="8"/><circle cx="305" cy="18" r="5"/></g></svg></div><div class="illustration scene3"><svg viewBox="0 0 500 300" aria-label="Cartoon patio installation">
-<rect width="500" height="300" fill="#9fc5e0"/><rect y="195" width="500" height="105" fill="#7d9560"/>
-<path d="M55 225h390l-55 60H110z" fill="#b9aaa0" stroke="#766a63" stroke-width="6"/>
-<g stroke="#8c8179" stroke-width="4"><path d="M120 225l-10 60M185 225l-5 60M250 225v60M315 225l5 60M380 225l10 60"/><path d="M80 245h350M70 267h370"/></g>
-<circle cx="250" cy="245" r="35" fill="#d85c2d" stroke="#633a2b" stroke-width="8"/>
-<circle cx="250" cy="245" r="20" fill="#26282a"/>
-<circle cx="120" cy="135" r="34" fill="#d7956b"/><path d="M88 128q32-55 64 0" fill="#242629"/><path d="M93 130h54" stroke="#c91616" stroke-width="9"/>
-<path d="M92 168q28-20 56 0v60H92z" fill="#34383c"/><path d="M95 180l-35 35M145 180l50 28" stroke="#d7956b" stroke-width="16" stroke-linecap="round"/>
-<path d="M190 210l35-18" stroke="#ddd" stroke-width="9" stroke-linecap="round" class="tool"/></svg></div><div class="illustration scene4"><svg viewBox="0 0 500 300" aria-label="Cartoon roofing project">
-<rect width="500" height="300" fill="#b9d5e7"/><path d="M30 210L245 70 475 210v90H30z" fill="#30363b"/><path d="M65 205L245 90 440 205" fill="none" stroke="#17191c" stroke-width="20"/>
-<g stroke="#686d70" stroke-width="4"><path d="M105 185l55 35M150 150l60 40M200 120l60 40M250 105l70 45M310 140l60 40M360 175l55 35"/></g>
-<circle cx="290" cy="145" r="34" fill="#d7956b"/><path d="M258 137q32-55 64 0" fill="#222"/><path d="M262 140h56" stroke="#c91616" stroke-width="9"/>
-<path d="M260 175q30-20 60 0v65h-60z" fill="#34383c"/><path d="M265 185l-50 30M310 185l55 20" stroke="#d7956b" stroke-width="16" stroke-linecap="round"/>
-<path d="M360 205l42-15" stroke="#ddd" stroke-width="9" stroke-linecap="round" class="tool"/></svg></div><div class="illustration scene5"><svg viewBox="0 0 500 300" aria-label="Cartoon stone wall">
-<rect width="500" height="300" fill="#d5e3eb"/><rect y="205" width="500" height="95" fill="#718060"/>
-<path d="M40 250Q150 120 250 190T460 155v95H40z" fill="#8d8b84" stroke="#55534f" stroke-width="7"/>
-<g fill="#b4b0a5" stroke="#68655f" stroke-width="5"><ellipse cx="95" cy="220" rx="35" ry="22"/><ellipse cx="170" cy="190" rx="38" ry="24"/><ellipse cx="250" cy="210" rx="35" ry="24"/><ellipse cx="330" cy="175" rx="42" ry="25"/><ellipse cx="410" cy="205" rx="36" ry="23"/><ellipse cx="130" cy="260" rx="42" ry="22"/><ellipse cx="225" cy="255" rx="40" ry="23"/><ellipse cx="320" cy="255" rx="45" ry="22"/><ellipse cx="415" cy="260" rx="40" ry="21"/></g>
-<circle cx="80" cy="120" r="32" fill="#d7956b"/><path d="M50 112q30-55 60 0" fill="#222"/><path d="M54 115h52" stroke="#c91616" stroke-width="9"/>
-<path d="M52 150q28-20 56 0v65H52z" fill="#34383c"/><path d="M58 165l-42 35M102 165l50 20" stroke="#d7956b" stroke-width="16" stroke-linecap="round"/></svg></div><div class="illustration scene6"><svg viewBox="0 0 500 300" aria-label="Cartoon restoration work">
-<rect width="500" height="300" fill="#cfd9df"/><path d="M0 95h500v205H0z" fill="#b9b1a5"/><g stroke="#807970" stroke-width="6"><path d="M0 145h500M0 195h500M0 245h500M90 95v50M200 95v50M315 95v50M420 95v50M45 145v50M150 145v50M270 145v50M380 145v50M100 195v50M220 195v50M340 195v50M55 245v55M175 245v55M295 245v55M415 245v55"/></g>
-<circle cx="325" cy="115" r="34" fill="#d7956b"/><path d="M293 108q32-55 64 0" fill="#222"/><path d="M297 111h56" stroke="#c91616" stroke-width="9"/>
-<path d="M295 150q30-20 60 0v65h-60z" fill="#34383c"/><path d="M300 165l-55 25M350 165l60 25" stroke="#d7956b" stroke-width="16" stroke-linecap="round"/><path d="M245 190l-40-12" stroke="#ddd" stroke-width="9" stroke-linecap="round" class="tool"/>
-<g fill="#c91616"><circle cx="225" cy="115" r="5"/><circle cx="205" cy="135" r="3"/></g></svg></div></div></section>
-<section class="trust" id="about"><div><strong>24+</strong>YEARS EXPERIENCE</div><div><strong>FREE</strong>ESTIMATES</div><div><strong>100%</strong>PROFESSIONAL</div><div><strong>INSURED</strong>FOR YOUR PROTECTION</div></section>
-<section id="contact" class="contact"><div class="contactbox"><div><div class="ey" style="color:#ff3434;font-weight:900;letter-spacing:2px">START YOUR PROJECT</div><h2>LET'S BUILD IT RIGHT.</h2><p>Call or send an estimate request. This concept is designed to turn local searches into real enquiries.</p><p>📞 <b>(603) 674-0492</b><br>📍 Manchester, NH</p><a class="btn red" href="tel:+16036740492">CALL CW MASONRY</a></div><form class="form" onsubmit="event.preventDefault();alert('Demo form — connect this to the client email/CRM before launch.')"><input placeholder="Your Name" required><input type="tel" placeholder="Phone Number" required><input placeholder="Project Type"><textarea placeholder="Tell us about your project"></textarea><button>SEND ESTIMATE REQUEST</button></form></div></section>
 <footer><span>© CW Masonry — Website Redesign Concept</span><span>Concept preview • Final content requires client approval</span></footer>
-</body></html>
+</body>
+</html>
